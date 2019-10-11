@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {WeatherService} from '../weather.service';
+import {WeatherService} from '../services/weather/weather.service';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -57,10 +57,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.activeRouter.paramMap.subscribe((route: any) => {
 
       this.city = route.params.city;
-      this.sub1 = this.weather.getWeatherState(this.city).subscribe((state) => this.state = state);
-      this.sub2 = this.weather.getCurrentTemp(this.city).subscribe((temperature) => this.temp = temperature);
-      this.sub3 = this.weather.getCurrentHum(this.city).subscribe((humidity) => this.hum = humidity);
-      this.sub4 = this.weather.getCurrentWind(this.city).subscribe((windspeed) => this.wind = windspeed);
+      // this.sub1 = this.weather.getWeatherState(this.city).subscribe((state) => this.state = state);
+      // this.sub2 = this.weather.getCurrentTemp(this.city).subscribe((temperature) => this.temp = temperature);
+      // this.sub3 = this.weather.getCurrentHum(this.city).subscribe((humidity) => this.hum = humidity);
+      // this.sub4 = this.weather.getCurrentWind(this.city).subscribe((windspeed) => this.wind = windspeed);
       this.sub5 = this.weather.getForecast(this.city).subscribe((data: any) => {
         console.log(data);
         for (let i = 0; i < data.length; i++) {
@@ -100,10 +100,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub1.unsubscribe();
-    this.sub2.unsubscribe();
-    this.sub3.unsubscribe();
-    this.sub4.unsubscribe();
+    // this.sub1.unsubscribe();
+    // this.sub2.unsubscribe();
+    // this.sub3.unsubscribe();
+    // this.sub4.unsubscribe();
     this.sub5.unsubscribe();
   }
 
